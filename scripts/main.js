@@ -1,4 +1,5 @@
-const apiUrl = "http://localhost:5000/products/";
+// const apiUrl = "http://localhost:5000/products/";
+const apiUrl = "https://cac7345aa07b0d8692b0.free.beeceptor.com/products/";//For Live Demo
 const headers = {
   "Content-Type": "application/json",
 };
@@ -136,7 +137,7 @@ window.editProduct = async function (id) {
       throw new Error("Network response was not ok");
     }
     let product = await response.json();
-    product = product[0];
+    product = product;
 
     productName.value = product.name;
     productPrice.value = product.price;
@@ -152,14 +153,13 @@ window.editProduct = async function (id) {
 // Update product
 updateBtn.addEventListener("click", async () => {
   const product = {
-    id: currentUserId,
     name: productName.value,
     price: productPrice.value,
     description: productdescription.value,
   };
 
   try {
-    await fetch(`${apiUrl}`, {
+    await fetch(`${apiUrl}${currentUserId}`, {
       method: "PUT",
       headers,
       body: JSON.stringify(product),
@@ -183,10 +183,10 @@ window.deleteProduct = async function (id) {
   if (!confirmDelete) return;
 
   try {
-    await fetch(`${apiUrl}`, {
+    await fetch(`${apiUrl}${id}`, {
       method: "DELETE",
       headers,
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify(),
     });
     fetchProducts();
     showToast("Product deleted successfully!","#00b09b", "#96c93d");
