@@ -2,6 +2,7 @@
 # **Product CRUD Application**
 
 ![Product CRUD](screenshots/CRUD.png)
+# Live: [Try It](https://el-fnan.github.io/CRUD/)
 # For the live demo, the frontend is connected to a public API to ensure smooth functionality (Note: The search feature is not available in this API). However, the original backend code is still included in the repository as comments for reference
 
 ## **Overview**
