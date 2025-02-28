@@ -1,5 +1,5 @@
 // const apiUrl = "http://localhost:5000/products/";
-const apiUrl = "https://cac7345aa07b0d8692b0.free.beeceptor.com/products/";//For Live Demo
+const apiUrl = "https://crudcrud.com/api/f570dce708d743339fbe1e9cc95ed7f6/products";//For Live Demo (limited hours)
 const headers = {
   "Content-Type": "application/json",
 };
@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Display products in table
 function displayProducts(products) {
-  const tbody = document.getElementById("tbody");
-  tbody.innerHTML = `
+  const tableInfo = document.getElementById("tableInfo");
+  tableInfo.innerHTML = `
     <thead>
       <tr>
         <th>ID</th>
@@ -83,19 +83,21 @@ function displayProducts(products) {
         <th>Actions</th>
       </tr>
     </thead>
+    <tbody>
     ${products
       .map(
         (product) => `
         <tr>
-            <td>${product.id}</td>
+            <td>${product._id}</td>
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>
-                <button onclick="editProduct('${product.id}')" class="btn btn-outline-primary">Edit</button>
-                <button onclick="deleteProduct('${product.id}')" class="btn btn-outline-danger">Delete</button>
+                <button onclick="editProduct('${product._id}')" class="btn btn-outline-primary">Edit</button>
+                <button onclick="deleteProduct('${product._id}')" class="btn btn-outline-danger">Delete</button>
             </td>
-        </tr>
+            </tr>
+    </tbody>
     `
       )
       .join("")}`;
@@ -189,7 +191,7 @@ window.deleteProduct = async function (id) {
       body: JSON.stringify(),
     });
     fetchProducts();
-    showToast("Product deleted successfully!","#00b09b", "#96c93d");
+    showToast("Product deleted successfully!", "#00b09b", "#96c93d");
   } catch (error) {
     console.error("Error deleting product:", error);
   }

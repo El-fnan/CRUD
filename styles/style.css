@@ -81,3 +81,11 @@ input:focus, textarea:focus {
     transition: 0.5s;
     transform: scale(1.09);
 }
+
+@media (max-width: 800px) {
+    .table-container{
+        overflow-x: auto;
+        padding: 5px;
+        display: block;
+    }
+}
