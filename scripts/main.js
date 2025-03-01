@@ -1,5 +1,5 @@
 // const apiUrl = "http://localhost:5000/products/";
-const apiUrl = "https://crudcrud.com/api/f570dce708d743339fbe1e9cc95ed7f6/products";//For Live Demo (limited hours)
+const apiUrl = "https://crudcrud.com/api/f2be5a42da584dbaba361547fc28e72d/products/";//For Live Demo (limited hours)
 const headers = {
   "Content-Type": "application/json",
 };
@@ -70,6 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+const sanitize = str => {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "😂")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+const checkInput = input => {
+  if (/<script>|<\/script>|alert\(/i.test(input)) return sanitize(input);
+  return input;
+}
+
+
 // Display products in table
 function displayProducts(products) {
   const tableInfo = document.getElementById("tableInfo");
@@ -88,13 +103,13 @@ function displayProducts(products) {
       .map(
         (product) => `
         <tr>
-            <td>${product._id}</td>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.description}</td>
+            <td>${checkInput(product._id)}</td>
+            <td>${checkInput(product.name)}</td>
+            <td>${checkInput(product.price)}</td>
+            <td>${checkInput(product.description)}</td>
             <td>
-                <button onclick="editProduct('${product._id}')" class="btn btn-outline-primary">Edit</button>
-                <button onclick="deleteProduct('${product._id}')" class="btn btn-outline-danger">Delete</button>
+                <button onclick="editProduct('${checkInput(product._id)}')" class="btn btn-outline-primary">Edit</button>
+                <button onclick="deleteProduct('${checkInput(product._id)}')" class="btn btn-outline-danger">Delete</button>
             </td>
             </tr>
     </tbody>
