@@ -1,5 +1,5 @@
 // const apiUrl = "http://localhost:5000/products/";
-const apiUrl = "https://crudcrud.com/api/73c4f51c46c5445f9a7db8c0f6f3b4fb/products/";//For Live Demo (limited hours)
+const apiUrl = "https://crudcrud.com/api/96c61b40c7304d0fa425da8698fb5d29/products/";//For Live Demo (limited hours)
 const headers = {
   "Content-Type": "application/json",
 };
@@ -70,14 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const sanitize = str => {
-  return String(str)
+const sanitize = str =>
+  String(str)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
-}
 
 // Display products in table
 function displayProducts(products) {
@@ -97,13 +96,13 @@ function displayProducts(products) {
       .map(
         (product) => `
         <tr>
-            <td>${sanitize(product._id)}</td>
+            <td>${sanitize(product.id)}</td>
             <td>${sanitize(product.name)}</td>
             <td>${sanitize(product.price)}</td>
             <td>${sanitize(product.description)}</td>
             <td>
-                <button onclick="editProduct('${sanitize(product._id)}')" class="btn btn-outline-primary">Edit</button>
-                <button onclick="deleteProduct('${sanitize(product._id)}')" class="btn btn-outline-danger">Delete</button>
+                <button onclick="editProduct('${sanitize(product.id)}')" class="btn btn-outline-primary">Edit</button>
+                <button onclick="deleteProduct('${sanitize(product.id)}')" class="btn btn-outline-danger">Delete</button>
             </td>
             </tr>
     </tbody>
