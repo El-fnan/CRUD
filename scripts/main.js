@@ -96,13 +96,13 @@ function displayProducts(products) {
       .map(
         (product) => `
         <tr>
-            <td>${sanitize(product.id)}</td>
+            <td>${sanitize(product._id)}</td>
             <td>${sanitize(product.name)}</td>
             <td>${sanitize(product.price)}</td>
             <td>${sanitize(product.description)}</td>
             <td>
-                <button onclick="editProduct('${sanitize(product.id)}')" class="btn btn-outline-primary">Edit</button>
-                <button onclick="deleteProduct('${sanitize(product.id)}')" class="btn btn-outline-danger">Delete</button>
+                <button onclick="editProduct('${sanitize(product._id)}')" class="btn btn-outline-primary">Edit</button>
+                <button onclick="deleteProduct('${sanitize(product._id)}')" class="btn btn-outline-danger">Delete</button>
             </td>
             </tr>
     </tbody>
